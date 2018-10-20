@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePlusReplication", "ePlusReplication\ePlusReplication.csproj", "{ED67522B-56C0-4BC3-8D13-83A8A0746E4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED67522B-56C0-4BC3-8D13-83A8A0746E4C}.Debug|x86.ActiveCfg = Debug|x86
+		{ED67522B-56C0-4BC3-8D13-83A8A0746E4C}.Debug|x86.Build.0 = Debug|x86
+		{ED67522B-56C0-4BC3-8D13-83A8A0746E4C}.Release|x86.ActiveCfg = Release|x86
+		{ED67522B-56C0-4BC3-8D13-83A8A0746E4C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

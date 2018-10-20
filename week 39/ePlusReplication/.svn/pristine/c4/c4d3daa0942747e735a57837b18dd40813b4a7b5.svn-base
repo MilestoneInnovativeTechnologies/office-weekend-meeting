@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Settings>
+  <USER>eplusagentlap</USER>
+  <PWD>eplusagentlap</PWD>
+  <SERVER>Thahir</SERVER>
+  <DATABASE>falcondata</DATABASE>
+  <PORT>3307</PORT>
+</Settings>

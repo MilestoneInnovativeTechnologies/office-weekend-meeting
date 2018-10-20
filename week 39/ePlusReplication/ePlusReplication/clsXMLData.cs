@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Xml;
+using System.IO;
+using System.Windows.Forms;
+using System.Net.NetworkInformation;
+
+namespace ePlusReplication
+{
+    
+    public class clsXMLData
+    {
+        public DataSet ds = new DataSet();
+        private string xmlPath, xmlSettingsFile;
+        public static string branchName;
+
+       public void connect()
+        {
+
+            bool connection = NetworkInterface.GetIsNetworkAvailable();
+            if (connection == true)
+            {
+                clsStatus.UdpateStatusText("Network Available");
+            }
+            else
+            {
+                clsStatus.UdpateStatusText("Network not Available");
+            }
+        }             
+
+        public clsXMLData()
+        {
+            xmlPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\" + Application.ProductName;
+            xmlSettingsFile = xmlPath + "\\Settings.xml";
+        }
+        public xmlSettings ReadSettings()
+        {
+            xmlSettings settings = new xmlSettings();
+            if (!File.Exists(xmlSettingsFile))
+            {
+                settings.success = false;
+                settings.errorMessage = "File not found (" + xmlSettingsFile +")";
+                return settings;
+            }
+            string xmlElement = "";
+            XmlTextReader reader = new XmlTextReader(xmlSettingsFile);
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        xmlElement = reader.Name;
+                        //MessageBox.Show(objXmlTextReader.Name);
+                        break;
+                    case XmlNodeType.Text:
+                        switch (xmlElement)
+                        {
+                            case "SERVER":
+                                settings.serverName = reader.Value;
+                                branchName = settings.serverName;
+                                break;
+                            case "DATABASE":
+                                settings.dbName = reader.Value;
+                                break;
+                            case "PORT":
+                                settings.dbPort = reader.Value;
+                                break;
+                            case "USER":
+                                settings.userName = reader.Value;
+                                break;
+                            case "PWD":
+                                settings.password = reader.Value;
+                                break;
+                            case "TIMER":
+                                settings.timer = reader.Value;
+                                break;
+                        }
+                        break;
+                }
+            }
+            reader.Close();
+            settings.success = true;
+            settings.errorMessage = "";
+            return settings;
+        }
+
+        public string getServerName(DataRow currentRow)
+        {
+            return currentRow["SERVERNAME"].ToString();
+        }
+        public string getDBName(DataRow currentRow)
+        {
+            return currentRow["DBNAME"].ToString();
+        }
+        public string getDBPort(DataRow currentRow)
+        {
+            return currentRow["PORT"].ToString();
+        }
+        public string getCompanyCode(DataRow currentRow)
+        {
+            return currentRow["COCODE"].ToString();
+        }
+        public string getBranchCode(DataRow currentRow)
+        {
+            return currentRow["BRCODE"].ToString();
+        }
+        public string getFiscalYearCode(DataRow currentRow)
+        {
+            return currentRow["FYCODE"].ToString();
+        }
+    }
+}
+
+
